@@ -5,10 +5,12 @@ import { useState } from "react";
 import { Feather } from '@expo/vector-icons';
 import colors from "tailwindcss/colors";
 import { api } from "../lib/axios";
+import { useNavigation } from "@react-navigation/native";
 
 const avaiableWeekDays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
 
 export function NewHabit() {
+    const { navigate } = useNavigation();
     const [title, setTitle] = useState('');
 
     const [weekDays, setWeekDays] = useState<number[]>([]);
@@ -41,6 +43,7 @@ export function NewHabit() {
             setWeekDays([]);
 
             Alert.alert('Sucesso', 'Novo hábito criado com sucesso!');
+            //navigate('home');
         } catch (error) {
             console.log(error);
             Alert.alert('Ops...', 'Não foi possível criar o novo hábito.')

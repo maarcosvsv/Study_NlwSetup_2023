@@ -3,6 +3,7 @@ import { generateProgress } from "../utils/generateProgres";
 import clsx from 'clsx';
 import dayjs from "dayjs";
 
+
 const WEEK_DAYS = 7;
 const SCREEN_HORIZONTAL_PADDING = (32 * 2) / 5;
 export const DAY_MARGIN_BETWEEN = 8;
@@ -18,12 +19,12 @@ export function HabitDay({ amount = 0, completed = 0, date, ...rest }: props) {
     const completedPercentage = amount > 0 ? generateProgress(amount, completed) : 0;
     const today = dayjs().startOf('day').toDate();
     const isCurrentDay = dayjs(date).isSame(today, 'day');
-    console.log('DIA: ' + date + ' ' + completedPercentage + ' ' + amount + ' ' + completed)
+    
     return (
         <TouchableOpacity
             className={clsx("rounded-lg border-2, m-1 ", {
                 'bg-zinc-900 border-zinc-800': completedPercentage === 0,
-                'bg-violet-200 border-violet-100': completedPercentage >= 1 && completedPercentage < 20,
+                'bg-violet-200 border-violet-100': completedPercentage > 0 && completedPercentage < 20,
                 'bg-violet-300 border-violet-200': completedPercentage >= 20 && completedPercentage < 40,
                 'bg-violet-500 border-violet-400': completedPercentage >= 40 && completedPercentage < 60,
                 'bg-violet-700 border-violet-600': completedPercentage >= 60 && completedPercentage < 80,
